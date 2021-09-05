@@ -7,7 +7,7 @@ GOGET=$(GOCMD) get
     
 all: build
 build:
-		$(GOBUILD) -v -ldflags="-extldflags=-static" -o "xplorer" cmd/xplorer/main.go
+		rm -f xplorer && $(GOBUILD) -v -ldflags="-extldflags=-static" -o "xplorer" main.go
 test: 
 		$(GOTEST) -v ./...
 tidy:
