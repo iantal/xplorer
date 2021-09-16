@@ -68,7 +68,6 @@ func (r *Runner) handleGradle() {
 		for _, p := range projects {
 			dt := gw.Dependencies(p, true)
 			gp.Parse(dt)
-			break
 		}
 	}
 }

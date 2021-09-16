@@ -26,7 +26,7 @@ func (g *Gradlew) Projects() ([]string, error) {
 		return nil, fmt.Errorf("Could not execute gradlew")
 	}
 
-	err, stdout, stderr := utils.CMD("/bin/sh", "gradlew", "projects")
+	err, stdout, stderr := utils.CMD("./gradlew", "projects")
 	if err != nil {
 		return nil, fmt.Errorf("Error executing [gradlew projects] command for %s", g.projectRoot)
 	}
@@ -79,7 +79,7 @@ func (g *Gradlew) Dependencies(project string, isSubproject bool) string {
 	gologger.Debug().Str("project", project).Msg("Generating dependency tree")
 
 	if !isSubproject {
-		err, stdout, serr := utils.CMD("/bin/sh", "gradlew", "dependencies")
+		err, stdout, serr := utils.CMD("./gradlew", "dependencies")
 		if err != nil {
 			gologger.Error().Msgf("Error executing [gradlew dependencies].\n%s", strings.Join(serr, "\n"))
 			return ""
@@ -88,7 +88,7 @@ func (g *Gradlew) Dependencies(project string, isSubproject bool) string {
 	}
 
 	c := project + ":dependencies"
-	err, stdout, serr := utils.CMD("/bin/sh", "gradlew", c)
+	err, stdout, serr := utils.CMD("./gradlew", c)
 	if err != nil {
 		gologger.Error().Msgf("Error executing [gradlew %s:dependencies].\n%s", project, strings.Join(serr, "\n"))
 		return ""

@@ -33,6 +33,8 @@ func (p *Parser) Parse(dependencyTree string) {
 	}
 
 	for _, l := range libraries {
-		gologger.Info().Msgf("Library: %s", l.Name)
+		if strings.Contains(l.Name, ":") {
+			gologger.Info().Msgf("Library: %s", l.Name)
+		}
 	}
 }

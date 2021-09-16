@@ -48,7 +48,6 @@ func search(file, directory string) error {
 			}
 
 			if strings.Contains(path, file) {
-				gologger.Debug().Msgf("Found file %s", file)
 				found = true
 			}
 
